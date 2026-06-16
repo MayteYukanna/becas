@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa de Becas — Fundación Grado Musical · Dossier de Patrocinio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #C5222E;
+    --rojo-oscuro: #9E1A24;
+    --gris-institucional: #4D4D4D;
+    --gris-suave: #E6E6E6;
+    --gris-muy-suave: #F5F4F0;
+    --negro: #1A1A1A;
+    --blanco: #FFFFFF;
+    --crema: #FAFAF8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--crema);
+    color: var(--negro);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ──────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,250,248,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gris-suave);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-text {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--negro);
+    line-height: 1.3;
+  }
+
+  .nav-logo-sub {
+    font-weight: 300;
+    color: var(--gris-institucional);
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gris-institucional);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rojo); }
+
+  .nav-cta {
+    background: var(--rojo);
+    color: var(--blanco) !important;
+    padding: 8px 20px !important;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--rojo-oscuro); }
+
+  /* ─── PENTAGRAMA LINES ─────────────────────── */
+  .pentagrama {
+    position: absolute;
+    left: 0; right: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .pentagrama-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(197,34,46,0.08);
+    position: absolute;
+  }
+
+  /* ─── SECCIONES GENÉRICAS ──────────────────── */
+  section {
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ─── HERO ─────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+
+  .hero-left {
+    background: var(--negro);
+    padding: 80px 64px 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-pentagrama {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+
+  .hero-pentagrama-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--rojo);
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(52px, 6vw, 82px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--blanco);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-headline em {
+    color: var(--rojo);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-key-concept {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-key-concept::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .hero-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    max-width: 420px;
+  }
+
+  .hero-date-box {
+    display: inline-flex;
+    flex-direction: column;
+    border-left: 3px solid var(--rojo);
+    padding: 12px 20px;
+    background: rgba(197,34,46,0.08);
+  }
+
+  .hero-date-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 4px;
+  }
+
+  .hero-date-text {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--blanco);
+  }
+
+  .hero-date-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  .hero-right {
+    background: #1A0405;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2a0608 0%, #0d0d0d 60%, #1a0405 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .hero-prado-text {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 24px;
+  }
+
+  .hero-shield {
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(197,34,46,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .hero-shield::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(197,34,46,0.15);
+  }
+
+  .hero-shield-inner {
+    text-align: center;
+  }
+
+  .hero-award-icon {
+    font-family: var(--serif);
+    font-size: 40px;
+    color: var(--rojo);
+    line-height: 1;
+  }
+
+  .hero-overlay-text {
+    text-align: center;
+    max-width: 280px;
+  }
+
+  .hero-overlay-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .hero-overlay-sub {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rojo);
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .scroll-hint-text {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .scroll-hint-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid rgba(255,255,255,0.3);
+    border-bottom: 1.5px solid rgba(255,255,255,0.3);
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(4px); }
+  }
+
+  /* ─── DECLARACIÓN ──────────────────────────── */
+  #declaracion {
+    background: var(--rojo);
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .declaracion-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .declaracion-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+  }
+
+  .declaracion-quote {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.25;
+    color: var(--blanco);
+    margin-bottom: 32px;
+  }
+
+  .declaracion-quote strong {
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  .declaracion-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.75);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .declaracion-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--sans);
+    font-size: 180px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.04);
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+
+  /* ─── FUNDACIÓN ────────────────────────────── */
+  #fundacion {
+    padding: 120px 0;
+    background: var(--crema);
+    position: relative;
+  }
+
+  .fundacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--rojo);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--negro);
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    color: var(--rojo);
+    font-style: italic;
+  }
+
+  .section-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--gris-institucional);
+    margin-bottom: 24px;
+  }
+
+  .sistema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--gris-suave);
+    border: 1px solid var(--gris-suave);
+  }
+
+  .sistema-item {
+    background: var(--blanco);
+    padding: 24px;
+    position: relative;
+  }
+
+  .sistema-item-num {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--gris-suave);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .sistema-item-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--negro);
+    margin-bottom: 6px;
+  }
+
+  .sistema-item-body {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--gris-institucional);
+  }
+
+  .sistema-item.active {
+    background: var(--rojo);
+  }
+
+  .sistema-item.active .sistema-item-num { color: rgba(255,255,255,0.15); }
+  .sistema-item.active .sistema-item-title { color: var(--blanco); }
+  .sistema-item.active .sistema-item-body { color: rgba(255,255,255,0.7); }
+
+  /* ─── FORMULA ──────────────────────────────── */
+  .formula-box {
+    background: var(--negro);
+    padding: 32px;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .formula-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+
+  .formula-text {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--blanco);
+    line-height: 1.8;
+  }
+
+  .formula-text span {
+    color: var(--rojo);
+    font-weight: 400;
+  }
+
+  /* ─── LOS PREMIOS ──────────────────────────── */
+  #programa {
+    background: var(--negro);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .programa-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .programa-header .section-label { justify-content: center; }
+  .programa-header .section-label::before { display: none; }
+
+  .programa-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--blanco);
+    margin-bottom: 20px;
+  }
+
+  .programa-title em { color: var(--rojo); font-style: italic; }
+
+  .programa-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .programa-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 1;
+  }
+
+  .programa-card {
+    background: #0D0D0D;
+    padding: 52px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .programa-card:hover { background: #141414; }
+
+  .programa-card-num {
+    font-family: var(--serif);
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: -16px;
+    right: 24px;
+    line-height: 1;
+  }
+
+  .programa-card-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(197,34,46,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .programa-card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--rojo);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .programa-card-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 12px;
+  }
+
+  .programa-card-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .programa-card-body {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+  }
+
+  .programa-card-criterios {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 24px;
+  }
+
+  .programa-card-criterios-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 12px;
+  }
+
+  .criterio {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .criterio::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--rojo);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .criterio span {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+
+  /* ─── GALA / PRADO ─────────────────────────── */
+  #proceso {
+    padding: 0;
+    background: var(--crema);
+    overflow: hidden;
+  }
+
+  .proceso-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+
+  .proceso-visual {
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+  }
+
+  .proceso-visual-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #1a0a0b 0%, #050505 70%);
+  }
+
+  .prado-columns {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    opacity: 0.06;
+  }
+
+  .prado-col {
+    background: var(--blanco);
+  }
+
+  .proceso-visual-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 48px;
+  }
+
+  .proceso-fecha-grande {
+    font-family: var(--serif);
+    font-size: 90px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .proceso-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .proceso-badge-circle {
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(197,34,46,0.3);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .proceso-badge-circle::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(197,34,46,0.1);
+  }
+
+  .proceso-badge-dia {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--blanco);
+    line-height: 1;
+  }
+
+  .proceso-badge-mes {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rojo);
+  }
+
+  .proceso-badge-year {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
+
+  .proceso-badge-venue {
+    text-align: center;
+  }
+
+  .proceso-badge-venue-name {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+  }
+
+  .proceso-badge-venue-sub {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .proceso-content {
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--blanco);
+  }
+
+  .proceso-quote {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--negro);
+    border-left: 3px solid var(--rojo);
+    padding-left: 24px;
+    margin-bottom: 40px;
+  }
+
+  .proceso-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .proceso-feature {
+    padding: 20px 0;
+    border-top: 1px solid var(--gris-suave);
+  }
+
+  .proceso-feature-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+  }
+
+  .proceso-feature-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--rojo);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .proceso-feature-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--negro);
+    margin-bottom: 4px;
+  }
+
+  .proceso-feature-body {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gris-institucional);
+    line-height: 1.6;
+  }
+
+  /* ─── IMPACTO / TESTIMONIALS ───────────────── */
+  #impacto {
+    padding: 120px 0;
+    background: var(--gris-muy-suave);
+  }
+
+  .impacto-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .impacto-header .section-label { justify-content: center; }
+  .impacto-header .section-label::before { display: none; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--gris-suave);
+    margin-bottom: 80px;
+  }
+
+  .stat-card {
+    background: var(--blanco);
+    padding: 48px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .stat-card:hover { background: var(--crema); }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--negro);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-num span {
+    color: var(--rojo);
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris-institucional);
+    margin-bottom: 8px;
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gris-institucional);
+    opacity: 0.7;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--gris-suave);
+  }
+
+  .testimonial {
+    background: var(--blanco);
+    padding: 40px;
+  }
+
+  .testimonial-text {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--negro);
+    margin-bottom: 24px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--gris-muy-suave);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gris-institucional);
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 2px;
+  }
+
+  .testimonial-role {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gris-institucional);
+  }
+
+  /* ─── PATROCINIOS ──────────────────────────── */
+  #patrocinios {
+    padding: 120px 0;
+    background: var(--crema);
+    position: relative;
+  }
+
+  .patrocinios-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .patrocinios-header .section-label { justify-content: center; }
+  .patrocinios-header .section-label::before { display: none; }
+
+  .patrocinios-subheader {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--gris-institucional);
+    max-width: 640px;
+    margin: 16px auto 0;
+  }
+
+  .patrocinios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    background: var(--gris-suave);
+    border: 1px solid var(--gris-suave);
+    margin-bottom: 48px;
+  }
+
+  .patrocinio-card {
+    background: var(--blanco);
+    padding: 56px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .patrocinio-card.featured {
+    background: var(--negro);
+    border: 3px solid var(--rojo);
+    margin: -3px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--rojo);
+    color: var(--blanco);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+  }
+
+  .patrocinio-nivel {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-institucional);
+    margin-bottom: 16px;
+  }
+
+  .featured .patrocinio-nivel { color: rgba(255,255,255,0.4); }
+
+  .patrocinio-nombre {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--negro);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .featured .patrocinio-nombre { color: var(--blanco); }
+
+  .patrocinio-precio {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gris-suave);
+  }
+
+  .featured .patrocinio-precio { border-color: rgba(255,255,255,0.08); }
+
+  .precio-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--rojo);
+    line-height: 1;
+  }
+
+  .precio-label {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gris-institucional);
+    margin-top: 4px;
+  }
+
+  .featured .precio-label { color: rgba(255,255,255,0.4); }
+
+  .precio-slots {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(197,34,46,0.08);
+    padding: 4px 12px;
+    margin-top: 8px;
+    border-radius: 2px;
+  }
+
+  .featured .precio-slots { background: rgba(197,34,46,0.2); }
+
+  .precio-slots-text {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--rojo);
+    letter-spacing: 0.05em;
+  }
+
+  .patrocinio-beneficios {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .beneficio {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .beneficio-check {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .beneficio-check svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--rojo);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .beneficio-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris-institucional);
+    line-height: 1.5;
+  }
+
+  .featured .beneficio-text { color: rgba(255,255,255,0.6); }
+
+  .patrocinio-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--negro);
+    color: var(--negro);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: transparent;
+    width: 100%;
+  }
+
+  .patrocinio-cta:hover {
+    background: var(--negro);
+    color: var(--blanco);
+  }
+
+  .featured .patrocinio-cta {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    color: var(--blanco);
+  }
+
+  .featured .patrocinio-cta:hover {
+    background: var(--rojo-oscuro);
+    border-color: var(--rojo-oscuro);
+  }
+
+  /* Financiación total */
+  .financiacion-box {
+    background: var(--gris-muy-suave);
+    border: 1px solid var(--gris-suave);
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .fin-item {
+    padding: 0 32px;
+    border-right: 1px solid var(--gris-suave);
+    text-align: center;
+  }
+
+  .fin-item:first-child { padding-left: 0; }
+  .fin-item:last-child { border-right: none; }
+
+  .fin-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--negro);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .fin-num span { color: var(--rojo); }
+
+  .fin-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris-institucional);
+  }
+
+  /* ─── ESG ──────────────────────────────────── */
+  #esg {
+    background: var(--negro);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .esg-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .esg-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 16px;
+  }
+
+  .esg-title em { color: var(--rojo); font-style: italic; }
+
+  .esg-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
+  .esg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+    margin-bottom: 64px;
+  }
+
+  .esg-card {
+    background: #0d0d0d;
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .esg-card:hover { background: #111; }
+
+  .esg-card-ods {
+    font-family: var(--serif);
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(197,34,46,0.12);
+    line-height: 1;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+  }
+
+  .esg-card-tag {
+    display: inline-flex;
+    padding: 4px 10px;
+    background: rgba(197,34,46,0.15);
+    border: 1px solid rgba(197,34,46,0.2);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 20px;
+  }
+
+  .esg-card-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .esg-card-body {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .esg-usos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .esg-uso {
+    background: #0d0d0d;
+    padding: 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .esg-uso-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(197,34,46,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .esg-uso-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--rojo);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .esg-uso-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blanco);
+    margin-bottom: 6px;
+  }
+
+  .esg-uso-body {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── CTA / CIERRE ─────────────────────────── */
+  #contacto {
+    background: var(--rojo);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacto-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+  }
+
+  .contacto-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--blanco);
+    margin-bottom: 24px;
+  }
+
+  .contacto-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto 48px;
+  }
+
+  .contacto-date-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 12px 28px;
+    margin-bottom: 48px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.05em;
+  }
+
+  .contacto-date-pill strong { color: var(--blanco); font-weight: 600; }
+
+  .contacto-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+
+  .btn-blanco {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blanco);
+    color: var(--rojo);
+    text-decoration: none;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-blanco:hover { background: var(--crema); }
+
+  .btn-outline-blanco {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline-blanco:hover { border-color: var(--blanco); }
+
+  .contacto-info {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contacto-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .contacto-info-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .contacto-info-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--blanco);
+  }
+
+  .contacto-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+    height: 40px;
+    align-self: center;
+  }
+
+  /* ─── FOOTER ───────────────────────────────── */
+  footer {
+    background: var(--negro);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo-text {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .footer-key-concept {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .footer-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+  }
+
+  /* ─── ANIMATIONS ───────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── NAV PROGRESS ─────────────────────────── */
+  .progress-bar {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    height: 2px;
+    background: var(--rojo);
+    z-index: 101;
+    transition: width 0.1s;
+  }
+
+  /* ─── RESPONSIVE ───────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    .container-narrow { padding: 0 24px; }
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 80px 32px 60px; }
+    .hero-right { min-height: 300px; }
+    .fundacion-grid { grid-template-columns: 1fr; gap: 48px; }
+    .programa-grid { grid-template-columns: 1fr; }
+    .proceso-inner { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .patrocinios-grid { grid-template-columns: 1fr; }
+    .patrocinio-card.featured { margin: 0; border: 3px solid var(--rojo); }
+    .financiacion-box { grid-template-columns: 1fr 1fr; }
+    .esg-grid { grid-template-columns: 1fr; }
+    .esg-usos { grid-template-columns: 1fr; }
+    .proceso-content { padding: 48px 32px; }
+    .proceso-features { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .sistema-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .financiacion-box { grid-template-columns: 1fr 1fr; gap: 0; }
+    .fin-item { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA DE PROGRESO -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- ─── NAVEGACIÓN ──────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M10 28 C10 28 8 20 12 14 C16 8 22 8 22 8 L22 16 C22 16 16 16 14 22 C12 28 10 28 10 28Z" fill="#C5222E"/>
+        <path d="M8 28 L8 20 M6 26 L10 26" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      Fundación Grado Musical
+      <span class="nav-logo-sub">Programa de Becas</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#programa">El Programa</a></li>
+    <li><a href="#proceso">El Proceso</a></li>
+    <li><a href="#impacto">Impacto</a></li>
+    <li><a href="#patrocinios">Apadrinar</a></li>
+    <li><a href="#contacto" class="nav-cta">Unirse</a></li>
+  </ul>
+</nav>
+
+<!-- ─── 1. HERO ──────────────────────────────── -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-pentagrama">
+      <div class="hero-pentagrama-line" style="top:20%"></div>
+      <div class="hero-pentagrama-line" style="top:32%"></div>
+      <div class="hero-pentagrama-line" style="top:44%"></div>
+      <div class="hero-pentagrama-line" style="top:56%"></div>
+      <div class="hero-pentagrama-line" style="top:68%"></div>
+    </div>
+
+    <div class="hero-label">Dossier de Patrocinio</div>
+
+    <h1 class="hero-headline">
+      El talento existe.<br>El <em>acceso</em>,<br>no siempre.
+    </h1>
+
+    <div class="hero-key-concept">Del acceso al talento</div>
+
+    <p class="hero-body">
+      El Programa de Becas de Fundación Grado Musical destina recursos a que ningún niño o joven se quede fuera de la educación musical por motivos económicos, y a que el talento emergente tenga con qué crecer. Becas anuales, vinculadas al curso escolar, con un destino claro y verificable.
+    </p>
+
+    <div class="hero-date-box">
+      <span class="hero-date-label">Convocatoria</span>
+      <span class="hero-date-text">Curso 2026 — 2027</span>
+      <span class="hero-date-sub">Beca anual · coincide con el año escolar</span>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-hint" onclick="document.getElementById('declaracion').scrollIntoView({behavior:'smooth'})">
+        <span class="scroll-hint-text">Continuar</span>
+        <div class="scroll-hint-arrow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="hero-fecha-grande" style="font-family:var(--serif);font-size:200px;font-weight:300;color:rgba(255,255,255,0.025);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:-0.02em;">Becas</div>
+
+      <div class="proceso-badge" style="position:relative;z-index:1;display:inline-flex;flex-direction:column;align-items:center;gap:16px;">
+        <div class="proceso-badge-circle" style="width:180px;height:180px;border:1px solid rgba(197,34,46,0.3);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;">
+          <div style="font-family:var(--serif);font-size:46px;font-weight:300;color:var(--blanco);line-height:1;">Curso</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--rojo);margin-top:6px;">Beca anual</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--serif);font-size:24px;font-weight:300;color:rgba(255,255,255,0.7);letter-spacing:0.05em;">Programa de Becas</div>
+          <div style="font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Acceso · Inclusión · Talento</div>
+        </div>
+
+        <div style="margin-top:24px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:12px;">Tres modalidades</div>
+          <svg width="200" height="20" viewBox="0 0 200 20" fill="none" style="opacity:0.15">
+            <line x1="0" y1="4" x2="200" y2="4" stroke="white" stroke-width="0.5"/>
+            <line x1="0" y1="8" x2="200" y2="8" stroke="white" stroke-width="0.5"/>
+            <line x1="0" y1="12" x2="200" y2="12" stroke="white" stroke-width="0.5"/>
+            <line x1="0" y1="16" x2="200" y2="16" stroke="white" stroke-width="0.5"/>
+            <line x1="0" y1="20" x2="200" y2="20" stroke="white" stroke-width="0.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. DECLARACIÓN ───────────────────────── -->
+<section id="declaracion">
+  <div class="declaracion-bg-text">ACCESO</div>
+  <div class="declaracion-inner">
+    <div class="declaracion-eyebrow">El espíritu del programa</div>
+    <h2 class="declaracion-quote">
+      Una beca no es solo dinero.<br>
+      Es <strong>una puerta que se abre</strong><br>en el momento exacto.
+    </h2>
+    <p class="declaracion-body">
+      El Programa de Becas facilita el acceso a la educación musical a niños y jóvenes de comunidades o situaciones desfavorecidas, y a la vez identifica y nutre el talento emergente. Una sola decisión —una beca— puede cambiar la trayectoria de una persona y, con ella, la de su familia y su entorno.
+    </p>
+  </div>
+</section>
+
+<!-- ─── 3. LA FUNDACIÓN ──────────────────────── -->
+<section id="fundacion">
+  <div class="container">
+    <div class="fundacion-grid">
+      <div>
+        <div class="section-label reveal">La fundación</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Una fundación que cree que <em>educar con la música</em> no debería depender de los recursos de cada familia.
+        </h2>
+        <p class="section-body reveal reveal-delay-2">
+          Fundación Grado Musical no existe para añadir música a la educación. Existe para demostrar que cuando la música entra de verdad en la formación de una persona, desarrolla disciplina, sensibilidad, esfuerzo, creatividad, escucha y trabajo compartido.
+        </p>
+        <p class="section-body reveal reveal-delay-3">
+          El Programa de Becas es la palanca de acceso de esa misión: garantiza que todos los niños y jóvenes puedan aprender y disfrutar de la música, independientemente de su situación económica, y da soporte al talento que despunta.
+        </p>
+
+        <div class="formula-box reveal reveal-delay-4">
+          <div class="formula-label">La fórmula de valor</div>
+          <div class="formula-text">
+            FGM = <span>Acceso</span> + <span>Inclusión</span> + <span>Talento</span> + <span>Comunidad</span> + <span>Impacto social</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sistema-grid reveal reveal-delay-1">
+          <div class="sistema-item active">
+            <div class="sistema-item-num">01</div>
+            <div class="sistema-item-title">Becas</div>
+            <div class="sistema-item-body">Acceso a la educación musical para quienes más lo necesitan y para el talento emergente.</div>
+          </div>
+          <div class="sistema-item">
+            <div class="sistema-item-num">02</div>
+            <div class="sistema-item-title">Premios</div>
+            <div class="sistema-item-body">Reconocimiento público de la excelencia y el compromiso en la formación musical.</div>
+          </div>
+          <div class="sistema-item">
+            <div class="sistema-item-num">03</div>
+            <div class="sistema-item-title">Orquestas escolares</div>
+            <div class="sistema-item-body">Agrupaciones musicales que convierten la práctica colectiva en comunidad.</div>
+          </div>
+          <div class="sistema-item">
+            <div class="sistema-item-num">04</div>
+            <div class="sistema-item-title">MusiKids</div>
+            <div class="sistema-item-body">Actividades culturales y musicales con carácter educativo e inclusivo.</div>
+          </div>
+          <div class="sistema-item">
+            <div class="sistema-item-num">05</div>
+            <div class="sistema-item-title">Inclusión social</div>
+            <div class="sistema-item-body">Proyectos donde la música construye puentes y cohesiona comunidad.</div>
+          </div>
+          <div class="sistema-item">
+            <div class="sistema-item-num">06</div>
+            <div class="sistema-item-title">Captación</div>
+            <div class="sistema-item-body">Conciertos y eventos para sostener y ampliar el alcance de la misión.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 4. EL PROGRAMA DE BECAS ──────────────── -->
+<section id="programa">
+  <div class="container">
+    <div class="programa-header reveal">
+      <div class="section-label">Programa de Becas</div>
+      <h2 class="programa-title">
+        Tres formas de<br>cambiar una <em>trayectoria</em>.
+      </h2>
+      <p class="programa-subtitle">
+        La Fundación destina parte de sus recursos a la concesión de becas para la realización de estudios y programas educativos relacionados con la formación artística y musical. La actividad se desglosa en tres modalidades, cada una con un beneficiario y un propósito distinto.
+      </p>
+    </div>
+
+    <div class="programa-grid">
+      <div class="programa-card reveal reveal-delay-1">
+        <div class="programa-card-num">01</div>
+        <div class="programa-card-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21h18M3 7v1a3 3 0 006 0V7m6 0v1a3 3 0 006 0V7M3 7l3-4h12l3 4"/>
+          </svg>
+        </div>
+        <div class="programa-card-label">Modalidad 01</div>
+        <h3 class="programa-card-title">Instituciones educativas</h3>
+        <p class="programa-card-body">
+          Apoyo a centros e instituciones que promueven la formación artística, cultural y musical. La beca se canaliza a través de la institución para que la música forme parte real de su proyecto educativo y llegue a más alumnos.
+        </p>
+        <div class="programa-card-criterios">
+          <div class="programa-card-criterios-label">Qué financia</div>
+          <div class="criterio"><span>Programas y recursos de educación musical en el centro</span></div>
+          <div class="criterio"><span>Acceso de alumnos que de otro modo quedarían fuera</span></div>
+          <div class="criterio"><span>Proyectos replicables y con impacto en la comunidad educativa</span></div>
+        </div>
+      </div>
+
+      <div class="programa-card reveal reveal-delay-2">
+        <div class="programa-card-num">02</div>
+        <div class="programa-card-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="programa-card-label">Modalidad 02</div>
+        <h3 class="programa-card-title">Alumnos con recursos insuficientes</h3>
+        <p class="programa-card-body">
+          Becas para niños y jóvenes de comunidades o situaciones desfavorecidas que desarrollan su formación en el ámbito artístico y musical. La inclusión y la accesibilidad como garantía: que aprender música no dependa de los recursos económicos.
+        </p>
+        <div class="programa-card-criterios">
+          <div class="programa-card-criterios-label">Qué financia</div>
+          <div class="criterio"><span>Matrícula, clases e instrumentos durante el curso</span></div>
+          <div class="criterio"><span>Continuidad de la formación a lo largo del año escolar</span></div>
+          <div class="criterio"><span>Igualdad de oportunidades de acceso a la música</span></div>
+        </div>
+      </div>
+
+      <div class="programa-card reveal reveal-delay-3">
+        <div class="programa-card-num">03</div>
+        <div class="programa-card-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <div class="programa-card-label">Modalidad 03</div>
+        <h3 class="programa-card-title">Alumnos excelentes</h3>
+        <p class="programa-card-body">
+          Apoyo al talento emergente del ámbito artístico y musical: alumnos que destacan por su constancia y sus resultados y que necesitan recursos para desarrollar todo su potencial. Identificar el talento y darle con qué crecer.
+        </p>
+        <div class="programa-card-criterios">
+          <div class="programa-card-criterios-label">Qué financia</div>
+          <div class="criterio"><span>Formación avanzada y especializada del alumno</span></div>
+          <div class="criterio"><span>Recursos para competir y desarrollarse artísticamente</span></div>
+          <div class="criterio"><span>Trayectorias de talento sostenidas en el tiempo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. EL PROCESO / CÓMO FUNCIONA ────────── -->
+<section id="proceso">
+  <div class="proceso-inner">
+    <div class="proceso-visual">
+      <div class="proceso-visual-bg"></div>
+      <div class="proceso-fecha-grande">CURSO</div>
+
+      <div style="position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:14px;align-items:flex-end;opacity:0.05;pointer-events:none;">
+        <div style="width:16px;height:180px;background:white;"></div>
+        <div style="width:16px;height:240px;background:white;"></div>
+        <div style="width:16px;height:300px;background:white;"></div>
+        <div style="width:16px;height:340px;background:white;"></div>
+        <div style="width:16px;height:300px;background:white;"></div>
+        <div style="width:16px;height:240px;background:white;"></div>
+        <div style="width:16px;height:180px;background:white;"></div>
+      </div>
+
+      <div class="proceso-visual-content">
+        <div class="proceso-badge">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--rojo);margin-bottom:20px;">El ciclo</div>
+          <div style="font-family:var(--serif);font-size:60px;font-weight:300;color:rgba(255,255,255,0.12);text-align:center;line-height:1;margin-bottom:4px;">Beca</div>
+          <div style="font-family:var(--serif);font-size:60px;font-weight:300;color:rgba(255,255,255,0.7);text-align:center;line-height:1;margin-bottom:24px;">anual</div>
+          <div style="font-size:11px;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-align:center;">De septiembre a junio · curso completo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proceso-content">
+      <div class="section-label reveal">Cómo funciona</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--negro);">
+        Un proceso<br>con criterio.
+      </h2>
+
+      <blockquote class="proceso-quote reveal reveal-delay-2">
+        "Su empresa, detrás de una beca concreta. Asociada al acceso, la inclusión y el talento, con un destino verificable y un seguimiento real."
+      </blockquote>
+
+      <p class="section-body reveal reveal-delay-3">
+        Las becas son anuales y coinciden con el año escolar. Cada ejercicio, un comité de becas examina y aprueba las solicitudes recibidas conforme a las tres modalidades. Eso convierte cada aportación en algo tangible: un alumno, un centro o un talento concreto, durante un curso completo, con resultados de los que se informa al patrocinador.
+      </p>
+
+      <div class="proceso-features reveal reveal-delay-4">
+        <div class="proceso-feature">
+          <div class="proceso-feature-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="proceso-feature-title">Convocatoria anual</div>
+          <div class="proceso-feature-body">Cada beca cubre un curso escolar completo, de septiembre a junio.</div>
+        </div>
+        <div class="proceso-feature">
+          <div class="proceso-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div class="proceso-feature-title">Comité de becas</div>
+          <div class="proceso-feature-body">Examen y aprobación de las solicitudes con criterios objetivos por modalidad.</div>
+        </div>
+        <div class="proceso-feature">
+          <div class="proceso-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="proceso-feature-title">Destino íntegro</div>
+          <div class="proceso-feature-body">Cada euro aportado va dirigido a la beca y al alumno o centro beneficiario.</div>
+        </div>
+        <div class="proceso-feature">
+          <div class="proceso-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="proceso-feature-title">Seguimiento e informe</div>
+          <div class="proceso-feature-body">Informe de impacto del curso, listo para memoria de sostenibilidad.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 6. IMPACTO ───────────────────────────── -->
+<section id="impacto">
+  <div class="container">
+    <div class="impacto-header reveal">
+      <div class="section-label" style="justify-content:center;"><div style="width:20px;height:2px;background:var(--rojo);"></div>Por qué importa</div>
+      <h2 class="section-title" style="text-align:center;">Una beca se mide<br>en <em>oportunidades</em>.</h2>
+      <p class="section-body" style="text-align:center;max-width:560px;margin:0 auto;">Fundación Grado Musical construye su marca desde hechos y compromisos, no desde promesas. El Programa de Becas se diseña sobre principios claros y verificables.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-num"><span>3</span></div>
+        <div class="stat-label">Modalidades</div>
+        <div class="stat-sub">Instituciones, acceso e inclusión, y talento</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-num"><span>1</span></div>
+        <div class="stat-label">Curso completo</div>
+        <div class="stat-sub">Beca anual vinculada al año escolar</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-num"><span>100</span>%</div>
+        <div class="stat-label">Destino íntegro</div>
+        <div class="stat-sub">Cada euro va a la beca y a su beneficiario</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-num">hasta <span>50</span>%</div>
+        <div class="stat-label">Deducción fiscal</div>
+        <div class="stat-sub">En Sociedades por recurrencia · Ley 49/2002</div>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p class="testimonial-text">"Lo más valioso de una beca no es que un alumno pueda pagar las clases. Es que descubre que tiene un sitio, que alguien ha apostado por él, y eso cambia cómo se ve a sí mismo."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">FGM</div>
+          <div>
+            <div class="testimonial-name">El propósito de la beca</div>
+            <div class="testimonial-role">Modalidad de acceso e inclusión</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-1">
+        <p class="testimonial-text">"Para un centro, la beca significa que la música deja de ser un lujo reservado a unos pocos y se convierte en parte real del proyecto educativo, para todos."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">FGM</div>
+          <div>
+            <div class="testimonial-name">El propósito de la beca</div>
+            <div class="testimonial-role">Modalidad de instituciones educativas</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <p class="testimonial-text">"El talento existe en todas partes; lo que no siempre existe son los recursos para desarrollarlo. Una beca es exactamente eso: el recurso que llega a tiempo."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">FGM</div>
+          <div>
+            <div class="testimonial-name">El propósito de la beca</div>
+            <div class="testimonial-role">Modalidad de talento emergente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 7. NIVELES DE PATROCINIO / APADRINAR ──── -->
+<section id="patrocinios">
+  <div class="container">
+    <div class="patrocinios-header reveal">
+      <div class="section-label" style="justify-content:center;"><div style="width:20px;height:2px;background:var(--rojo);"></div>Apadrinar una beca</div>
+      <h2 class="section-title" style="text-align:center;">Elige el <em>alcance</em><br>de tu apoyo.</h2>
+      <p class="patrocinios-subheader">
+        Tres opciones para asociar tu marca al acceso, la inclusión y el talento. Todas son aportaciones anuales, por curso escolar, con destino verificable, activos para RSC y ventajas fiscales bajo la Ley 49/2002.
+      </p>
+    </div>
+
+    <div class="patrocinios-grid">
+
+      <!-- NIVEL 3: PADRINO DE UNA BECA -->
+      <div class="patrocinio-card reveal">
+        <div class="patrocinio-nivel">Alcance individual</div>
+        <h3 class="patrocinio-nombre">Padrino<br>de una Beca</h3>
+        <div class="patrocinio-precio">
+          <div class="precio-num">2.000 €</div>
+          <div class="precio-label">Aportación anual · por curso</div>
+          <div class="precio-slots">
+            <div class="precio-slots-text">Apadrina 1 beca · varios padrinos</div>
+          </div>
+        </div>
+        <ul class="patrocinio-beneficios">
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Apadrinamiento nominal de una beca durante el curso completo</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Mención como padrino en la web del Programa de Becas</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Mención en redes sociales del curso apadrinado</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Certificado digital de colaboración con la Fundación</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Ficha de impacto de la beca para tu comunicación</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Certificado de donativo para deducción fiscal (Ley 49/2002)</span></li>
+        </ul>
+        <button class="patrocinio-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Solicitar información</button>
+      </div>
+
+      <!-- NIVEL 1: MECENAS DEL PROGRAMA (FEATURED) -->
+      <div class="patrocinio-card featured reveal reveal-delay-1">
+        <div class="featured-badge">Naming del programa · Exclusivo</div>
+        <div class="patrocinio-nivel" style="margin-top:20px;">Alcance transversal</div>
+        <h3 class="patrocinio-nombre">Mecenas<br>del Programa</h3>
+        <div class="patrocinio-precio">
+          <div class="precio-num">16.000 €</div>
+          <div class="precio-label">Aportación anual · por curso</div>
+          <div class="precio-slots">
+            <div class="precio-slots-text">Único — plaza exclusiva</div>
+          </div>
+        </div>
+        <ul class="patrocinio-beneficios">
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Naming del programa anual: «Programa de Becas FGM — [tu marca]»</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Sostén transversal de las tres modalidades de becas del curso</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Presencia prominente en toda la comunicación del programa</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Co-protagonismo en el acto de entrega o presentación de becas</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Vídeo y reportaje de marca en torno al impacto de las becas</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Informe de impacto personalizado del curso completo</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Posibilidad de convenio de colaboración plurianual</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Tratamiento fiscal preferente por recurrencia (Ley 49/2002)</span></li>
+        </ul>
+        <button class="patrocinio-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Reservar esta plaza</button>
+      </div>
+
+      <!-- NIVEL 2: PATROCINADOR DE UNA MODALIDAD -->
+      <div class="patrocinio-card reveal reveal-delay-2">
+        <div class="patrocinio-nivel">Alcance por modalidad</div>
+        <h3 class="patrocinio-nombre">Patrocinador<br>de Modalidad</h3>
+        <div class="patrocinio-precio">
+          <div class="precio-num">7.000 €</div>
+          <div class="precio-label">Aportación anual · por curso</div>
+          <div class="precio-slots">
+            <div class="precio-slots-text">Hasta 3 · una por modalidad</div>
+          </div>
+        </div>
+        <ul class="patrocinio-beneficios">
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Apadrinamiento de una modalidad completa (un grupo de becas)</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Asociación de marca a esa modalidad durante el curso</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Logo en la web y comunicaciones del Programa de Becas</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Mención en nota de prensa de la convocatoria del curso</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Invitación al acto de entrega o presentación de becas</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Certificado institucional con el impacto de la modalidad</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Ficha de impacto educativo para memoria no financiera</span></li>
+          <li class="beneficio"><div class="beneficio-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="beneficio-text">Certificado de donativo para deducción fiscal (Ley 49/2002)</span></li>
+        </ul>
+        <button class="patrocinio-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Solicitar información</button>
+      </div>
+
+    </div>
+
+    <!-- FINANCIACIÓN TOTAL -->
+    <div class="financiacion-box reveal" style="margin-top:2px;">
+      <div class="fin-item">
+        <div class="fin-num">1 × <span>16K</span></div>
+        <div class="fin-label">Mecenas del Programa</div>
+      </div>
+      <div class="fin-item">
+        <div class="fin-num">3 × <span>7K</span></div>
+        <div class="fin-label">Patrocinadores</div>
+      </div>
+      <div class="fin-item">
+        <div class="fin-num">6 × <span>2K</span></div>
+        <div class="fin-label">Padrinos de beca</div>
+      </div>
+      <div class="fin-item" style="border-right:none;">
+        <div class="fin-num"><span>49.000</span> €</div>
+        <div class="fin-label">Potencial por curso</div>
+      </div>
+    </div>
+
+    <!-- NOTA: APORTACIONES EN ESPECIE -->
+    <div style="margin-top:2px;padding:24px 28px;background:var(--gris-muy-suave);border:1px solid var(--gris-suave);">
+      <p style="font-size:12px;font-weight:300;color:var(--gris-institucional);line-height:1.7;">
+        <strong style="font-weight:600;color:var(--negro);">Aportaciones en especie y convenios.</strong> Además de las aportaciones económicas, se admiten contribuciones en especie (instrumentos, material, espacios, servicios) y convenios de colaboración a medida. Cualquier alcance puede formalizarse como donación (Ley 49/2002), patrocinio publicitario o convenio de colaboración empresarial, cada uno con su tratamiento fiscal y documental.
+      </p>
+    </div>
+
+    <!-- NOTA FISCAL -->
+    <div style="margin-top:24px;padding:20px 24px;border-left:3px solid var(--rojo);background:rgba(197,34,46,0.04);">
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--rojo);margin-bottom:10px;">Ventaja fiscal · Ley 49/2002 de mecenazgo</p>
+      <p style="font-size:12px;font-weight:300;color:var(--gris-institucional);line-height:1.7;margin-bottom:8px;">
+        <strong style="font-weight:600;color:var(--negro);">Empresas (Impuesto sobre Sociedades):</strong> deducción del <strong style="font-weight:600;">40 %</strong> del importe donado, que asciende al <strong style="font-weight:600;">50 %</strong> por recurrencia (cuando en los dos periodos impositivos anteriores se ha donado a la misma entidad un importe igual o superior). Límite del 15 % de la base imponible.
+      </p>
+      <p style="font-size:12px;font-weight:300;color:var(--gris-institucional);line-height:1.7;margin-bottom:8px;">
+        <strong style="font-weight:600;color:var(--negro);">Particulares (IRPF):</strong> deducción del <strong style="font-weight:600;">80 %</strong> sobre los primeros 250 € y del <strong style="font-weight:600;">40 %</strong> sobre el resto, que asciende al <strong style="font-weight:600;">45 %</strong> por recurrencia.
+      </p>
+      <p style="font-size:11px;font-weight:300;color:var(--gris-institucional);line-height:1.6;opacity:0.85;">
+        Porcentajes vigentes desde el 1 de enero de 2024 (RD-ley 6/2023). FGM está acogida a la Ley 49/2002 y persigue fines de interés general educativos y culturales. Información orientativa; el tratamiento concreto se confirma en el certificado de donativo y según la fórmula jurídica elegida.
+      </p>
+    </div>
+
+    <!-- FECHA LÍMITE -->
+    <div style="margin-top:24px;padding:20px 24px;border-left:3px solid var(--negro);background:rgba(26,26,26,0.03);">
+      <p style="font-size:12px;font-weight:300;color:var(--gris-institucional);line-height:1.7;">
+        <strong style="font-weight:600;color:var(--negro);">Confirmación del curso 2026–2027:</strong> para incorporar tu marca a la convocatoria y a todos los materiales del programa, las confirmaciones deben cerrarse antes del <strong style="font-weight:600;">15 de septiembre de 2026</strong>, coincidiendo con el inicio del curso escolar.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 8. ESG / RSC ──────────────────────────── -->
+<section id="esg">
+  <div class="container">
+    <div class="esg-header reveal">
+      <div class="section-label" style="color:var(--rojo);justify-content:center;"><div style="width:20px;height:2px;background:var(--rojo);"></div>Valor ESG y RSC</div>
+      <h2 class="esg-title">Tu inversión, en <em>clave social</em>.</h2>
+      <p class="esg-subtitle">
+        El apadrinamiento del Programa de Becas se alinea directamente con los principales marcos de sostenibilidad y responsabilidad corporativa, con un impacto medible y documentado.
+      </p>
+    </div>
+
+    <div class="esg-grid">
+      <div class="esg-card reveal">
+        <div class="esg-card-ods">4</div>
+        <div class="esg-card-tag">ODS 4</div>
+        <h3 class="esg-card-title">Educación de calidad</h3>
+        <p class="esg-card-body">Apoyo directo al acceso y la calidad de la educación musical como herramienta de formación integral. Las becas garantizan que más niños y jóvenes puedan formarse.</p>
+      </div>
+      <div class="esg-card reveal reveal-delay-1">
+        <div class="esg-card-ods">10</div>
+        <div class="esg-card-tag">ODS 10</div>
+        <h3 class="esg-card-title">Reducción de desigualdades</h3>
+        <p class="esg-card-body">Becas que aseguran el acceso a la educación musical independientemente de la situación económica. La música como instrumento de igualdad de oportunidades.</p>
+      </div>
+      <div class="esg-card reveal reveal-delay-2">
+        <div class="esg-card-ods">8</div>
+        <div class="esg-card-tag">ODS 8</div>
+        <h3 class="esg-card-title">Talento y desarrollo</h3>
+        <p class="esg-card-body">Identificar y nutrir el talento emergente para que pueda desarrollar todo su potencial. Inversión en las trayectorias y el futuro profesional de los jóvenes.</p>
+      </div>
+    </div>
+
+    <div class="esg-usos">
+      <div class="esg-uso reveal">
+        <div class="esg-uso-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div>
+          <div class="esg-uso-title">Memoria no financiera</div>
+          <div class="esg-uso-body">Informe personalizado con datos de impacto del curso, alcance y perfiles de las becas concedidas. Listo para tu memoria de sostenibilidad.</div>
+        </div>
+      </div>
+      <div class="esg-uso reveal reveal-delay-1">
+        <div class="esg-uso-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="esg-uso-title">Criterios ESG — Factor S</div>
+          <div class="esg-uso-body">Contribución tangible y medible al componente Social del marco ESG. Documentada y certificada por la Fundación.</div>
+        </div>
+      </div>
+      <div class="esg-uso reveal reveal-delay-2">
+        <div class="esg-uso-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <div>
+          <div class="esg-uso-title">Ventaja fiscal</div>
+          <div class="esg-uso-body">Deducciones de la Ley 49/2002 de mecenazgo, con tratamiento preferente por recurrencia para compromisos plurianuales.</div>
+        </div>
+      </div>
+      <div class="esg-uso reveal reveal-delay-3">
+        <div class="esg-uso-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <div class="esg-uso-title">Reputación de marca</div>
+          <div class="esg-uso-body">Asociación a educación, juventud, inclusión y talento. Una causa concreta, con beneficiario verificable y relato propio.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 9. CTA CIERRE ────────────────────────── -->
+<section id="contacto">
+  <div class="declaracion-bg-text" style="color:rgba(255,255,255,0.03);">UNIRSE</div>
+  <div style="position:relative;z-index:1;padding:0 24px;">
+    <div class="contacto-eyebrow">El siguiente paso</div>
+    <h2 class="contacto-title">
+      Educando con la música.<br>Empieza por<br><em>abrir la puerta</em>.
+    </h2>
+    <p class="contacto-body">
+      Cada curso, una nueva convocatoria de becas decide qué talentos pueden empezar o continuar su formación musical. Tu marca puede estar detrás de esa decisión, con un alcance a tu medida y un destino verificable.
+    </p>
+
+    <div class="contacto-date-pill">
+      Confirmación del curso 2026–2027: <strong>antes del 15 de septiembre de 2026</strong>
+    </div>
+
+    <div class="contacto-buttons">
+      <button class="btn-blanco" onclick="window.location.href='mailto:fundacion@gradomusical.es?subject=Interés%20en%20apadrinar%20el%20Programa%20de%20Becas%20FGM'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Quiero apadrinar una beca
+      </button>
+      <button class="btn-outline-blanco" onclick="window.location.href='mailto:fundacion@gradomusical.es?subject=Solicitud%20de%20reunión%20Programa%20de%20Becas%20FGM'">
+        Solicitar una reunión
+      </button>
+    </div>
+
+    <div class="contacto-info">
+      <div class="contacto-info-item">
+        <span class="contacto-info-label">Web</span>
+        <span class="contacto-info-value">gradomusical.es</span>
+      </div>
+      <div class="contacto-divider"></div>
+      <div class="contacto-info-item">
+        <span class="contacto-info-label">Email</span>
+        <span class="contacto-info-value">fundacion@gradomusical.es</span>
+      </div>
+      <div class="contacto-divider"></div>
+      <div class="contacto-info-item">
+        <span class="contacto-info-label">Sede</span>
+        <span class="contacto-info-value">Madrid, España</span>
+      </div>
+      <div class="contacto-divider"></div>
+      <div class="contacto-info-item">
+        <span class="contacto-info-label">Programa</span>
+        <span class="contacto-info-value">Becas · Curso 2026–2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────── -->
+<footer>
+  <div class="footer-logo-text">
+    Fundación Grado Musical<br>
+    <span style="font-weight:300;opacity:0.6;">Programa de Becas · Curso 2026–2027</span>
+  </div>
+  <div class="footer-key-concept">Educando con la música.</div>
+  <div class="footer-note">
+    Dossier de patrocinio · Becas<br>
+    <span style="opacity:0.5;">© Fundación Grado Musical</span>
+  </div>
+</footer>
+
+<script>
+  // Barra de progreso
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = Math.min(scrolled, 100) + '%';
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Nav sombra en scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      nav.style.boxShadow = '0 1px 20px rgba(0,0,0,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
